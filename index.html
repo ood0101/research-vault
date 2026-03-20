@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>research vault</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 24px 120px;
+    }
+
+    /* Index page */
+    .index-header {
+      margin-bottom: 40px;
+    }
+
+    .index-header h1 {
+      font-size: 18px;
+      font-weight: normal;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .index-header p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .company-index {
+      list-style: none;
+      padding: 0;
+    }
+
+    .company-index li {
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .company-index li:last-child {
+      border-bottom: none;
+    }
+
+    .company-index a {
+      color: #111;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .company-index a:hover {
+      color: #5a3de6;
+    }
+
+    .company-index .meta {
+      font-size: 13px;
+      color: #999;
+      margin-left: 8px;
+    }
+
+    /* Article page */
+    .back-link {
+      display: inline-block;
+      margin-bottom: 32px;
+      font-size: 14px;
+      color: #999;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: #5a3de6;
+    }
+
+    /* Markdown content */
+    .md h1 {
+      font-size: 24px;
+      font-weight: normal;
+      margin: 0 0 4px;
+      line-height: 1.3;
+    }
+
+    .md h2 {
+      font-size: 17px;
+      font-weight: bold;
+      margin: 36px 0 12px;
+      color: #111;
+    }
+
+    .md h3 {
+      font-size: 15px;
+      font-weight: bold;
+      margin: 28px 0 8px;
+      color: #333;
+    }
+
+    .md h4 {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 20px 0 6px;
+      color: #555;
+    }
+
+    .md p {
+      margin-bottom: 14px;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .md strong { color: #111; }
+
+    .md a {
+      color: #5a3de6;
+      text-decoration: underline;
+      text-decoration-color: #ccc;
+      text-underline-offset: 2px;
+    }
+
+    .md a:hover {
+      text-decoration-color: #5a3de6;
+    }
+
+    .md ul, .md ol {
+      margin-bottom: 14px;
+      padding-left: 20px;
+    }
+
+    .md li {
+      margin-bottom: 4px;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .md blockquote {
+      border-left: 2px solid #ddd;
+      padding-left: 16px;
+      margin: 16px 0;
+      color: #555;
+      font-style: italic;
+    }
+
+    .md blockquote p {
+      margin-bottom: 0;
+      color: #555;
+    }
+
+    .md code {
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 13px;
+      background: #f5f5f5;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    .md pre {
+      background: #f9f9f9;
+      border: 1px solid #eee;
+      padding: 14px 16px;
+      overflow-x: auto;
+      margin: 14px 0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .md pre code {
+      background: none;
+      padding: 0;
+    }
+
+    .md hr {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 28px 0;
+    }
+
+    /* Tables */
+    .md table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+      font-size: 13px;
+    }
+
+    .md th {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 2px solid #ddd;
+      font-weight: bold;
+      color: #111;
+      font-size: 12px;
+    }
+
+    .md td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #eee;
+      color: #333;
+      vertical-align: top;
+    }
+
+    .md tr:hover td {
+      background: #fafafa;
+    }
+
+    /* Images */
+    .md img {
+      max-width: 100%;
+      height: auto;
+      margin: 12px 0;
+    }
+
+    /* Article meta */
+    .article-meta {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 28px;
+    }
+
+    .article-meta a {
+      color: #5a3de6;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      font-size: 12px;
+      color: #bbb;
+    }
+
+    /* Search */
+    #search {
+      width: 100%;
+      border: 1px solid #ddd;
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 14px;
+      color: #111;
+      margin-bottom: 24px;
+      outline: none;
+      background: #fff;
+    }
+
+    #search:focus {
+      border-color: #999;
+    }
+
+    #search::placeholder {
+      color: #bbb;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 0; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    // Simple markdown → HTML
+    function parseMd(md) {
+      let html = md
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
+        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+        .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+        .replace(/^---$/gm, '<hr />')
+        .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+        .replace(/^&gt; (.+)$/gm, '<blockquote><p>$1</p></blockquote>')
+        .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />');
+
+      // Tables
+      html = html.replace(/^(\|.+\|)\n(\|[\s\-:|]+\|)\n((?:\|.+\|\n?)*)/gm, (match, header, sep, body) => {
+        const ths = header.split('|').filter(c => c.trim()).map(c => `<th>${c.trim()}</th>`).join('');
+        const rows = body.trim().split('\n').map(row => {
+          const tds = row.split('|').filter(c => c.trim()).map(c => `<td>${c.trim()}</td>`).join('');
+          return `<tr>${tds}</tr>`;
+        }).join('');
+        return `<table><thead><tr>${ths}</tr></thead><tbody>${rows}</tbody></table>`;
+      });
+
+      // Unordered lists
+      html = html.replace(/^((?:- .+\n?)+)/gm, (match) => {
+        const items = match.trim().split('\n').map(line => `<li>${line.replace(/^- /, '')}</li>`).join('');
+        return `<ul>${items}</ul>`;
+      });
+
+      // Ordered lists
+      html = html.replace(/^((?:\d+\. .+\n?)+)/gm, (match) => {
+        const items = match.trim().split('\n').map(line => `<li>${line.replace(/^\d+\. /, '')}</li>`).join('');
+        return `<ol>${items}</ol>`;
+      });
+
+      // Paragraphs
+      html = html.split('\n\n').map(block => {
+        block = block.trim();
+        if (!block) return '';
+        if (/^<[huptbola]/.test(block)) return block;
+        if (/^<hr/.test(block)) return block;
+        if (/^<img/.test(block)) return block;
+        return `<p>${block.replace(/\n/g, '<br />')}</p>`;
+      }).join('\n');
+
+      return html;
+    }
+
+    function extractMeta(md) {
+      const meta = {};
+      const nameMatch = md.match(/^# (.+)$/m);
+      meta.name = nameMatch ? nameMatch[1] : 'Unknown';
+
+      const websiteMatch = md.match(/\*\*Website:\*\*\s*\[.*?\]\((.*?)\)/);
+      meta.website = websiteMatch ? websiteMatch[1] : '';
+
+      const hqMatch = md.match(/\*\*HQ:\*\*\s*(.+)$/m);
+      meta.hq = hqMatch ? hqMatch[1].trim() : '';
+
+      const stageMatch = md.match(/\*\*Stage:\*\*\s*(.+)$/m);
+      meta.stage = stageMatch ? stageMatch[1].trim() : '';
+
+      return meta;
+    }
+
+    // State
+    let companies = [];
+    let currentView = 'index'; // 'index' or 'article'
+    let currentCompany = null;
+
+    async function loadCompanies() {
+      const res = await fetch('companies/manifest.json');
+      const manifest = await res.json();
+
+      companies = await Promise.all(manifest.files.map(async (file) => {
+        const res = await fetch(`companies/${file}`);
+        const md = await res.text();
+        const meta = extractMeta(md);
+        return { file, md, meta };
+      }));
+
+      // Check URL hash for direct link
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        const found = companies.find(c => c.file.replace('.md', '') === hash);
+        if (found) { showArticle(found); return; }
+      }
+
+      showIndex();
+    }
+
+    function showIndex() {
+      currentView = 'index';
+      currentCompany = null;
+      window.location.hash = '';
+
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <div class="index-header">
+          <h1>research vault</h1>
+          <p>${companies.length} companies</p>
+        </div>
+        <input type="text" id="search" placeholder="search..." oninput="filterList(this.value)" />
+        <ul class="company-index" id="list">
+          ${companies.map((c, i) => `
+            <li data-i="${i}">
+              <a href="#${c.file.replace('.md', '')}" onclick="event.preventDefault(); showArticle(companies[${i}])">${c.meta.name}</a><span class="meta">${c.meta.stage ? c.meta.stage.split('(')[0].trim() : ''}${c.meta.hq ? ' · ' + c.meta.hq : ''}</span>
+            </li>
+          `).join('')}
+        </ul>
+        <div class="footer">plain hypertext. no frameworks.</div>
+      `;
+    }
+
+    function showArticle(company) {
+      currentView = 'article';
+      currentCompany = company;
+      window.location.hash = company.file.replace('.md', '');
+
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <a class="back-link" href="#" onclick="event.preventDefault(); showIndex()">← index</a>
+        <div class="md">
+          ${parseMd(company.md)}
+        </div>
+        <div class="footer">
+          <a class="back-link" href="#" onclick="event.preventDefault(); showIndex(); window.scrollTo(0,0)">← back to index</a>
+        </div>
+      `;
+
+      window.scrollTo(0, 0);
+    }
+
+    function filterList(q) {
+      q = q.toLowerCase();
+      document.querySelectorAll('#list li').forEach((li, i) => {
+        const c = companies[i];
+        const match = c.meta.name.toLowerCase().includes(q) || c.md.toLowerCase().includes(q);
+        li.style.display = match ? '' : 'none';
+      });
+    }
+
+    // Handle back/forward
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.slice(1);
+      if (!hash) { showIndex(); return; }
+      const found = companies.find(c => c.file.replace('.md', '') === hash);
+      if (found) showArticle(found);
+    });
+
+    loadCompanies();
+  </script>
+</body>
+</html>
