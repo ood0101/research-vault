@@ -25,7 +25,8 @@
         { "file": "standardkernel.md", "conviction": "HIGH", "oneliner": "AI that writes GPU kernels better than human engineers" },
         { "file": "sf-compute.md", "conviction": "MEDIUM-HIGH", "oneliner": "GPU commodities marketplace with tradable contracts" },
         { "file": "etched.md", "conviction": "MEDIUM", "oneliner": "Transformer-specific ASIC for inference" },
-        { "file": "cumulus-labs.md", "conviction": "MEDIUM", "oneliner": "Hardware-specific inference engine for NVIDIA Grace Hopper" }
+        { "file": "cumulus-labs.md", "conviction": "MEDIUM", "oneliner": "Hardware-specific inference engine for NVIDIA Grace Hopper" },
+        { "file": "fireworks-ai.md", "conviction": "MEDIUM-HIGH", "oneliner": "PyTorch team's inference platform — 13T+ tokens/day, $4B valuation" }
       ]
     },
     {
