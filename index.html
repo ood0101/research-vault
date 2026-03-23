@@ -19,7 +19,7 @@
 
     /* Index page */
     .index-header {
-      margin-bottom: 40px;
+      margin-bottom: 32px;
     }
 
     .index-header h1 {
@@ -34,37 +34,148 @@
       color: #666;
     }
 
-    .company-index {
+    /* Search */
+    #search {
+      width: 100%;
+      border: 1px solid #ddd;
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 14px;
+      color: #111;
+      margin-bottom: 8px;
+      outline: none;
+      background: #fff;
+    }
+
+    #search:focus {
+      border-color: #999;
+    }
+
+    #search::placeholder {
+      color: #bbb;
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      font-size: 12px;
+    }
+
+    .filter-btn {
+      background: none;
+      border: 1px solid #ddd;
+      padding: 3px 10px;
+      font-family: inherit;
+      font-size: 12px;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover {
+      border-color: #999;
+      color: #111;
+    }
+
+    .filter-btn.active {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    /* Category sections */
+    .category {
+      margin-bottom: 36px;
+    }
+
+    .category-header {
+      font-size: 13px;
+      font-weight: bold;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .category-header .count {
+      font-weight: normal;
+      color: #ccc;
+      margin-left: 4px;
+    }
+
+    .company-list {
       list-style: none;
       padding: 0;
     }
 
-    .company-index li {
-      padding: 6px 0;
-      border-bottom: 1px solid #eee;
+    .company-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #f5f5f5;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
     }
 
-    .company-index li:last-child {
+    .company-item:last-child {
       border-bottom: none;
     }
 
-    .company-index a {
+    .company-name {
       color: #111;
       text-decoration: none;
       font-size: 15px;
+      white-space: nowrap;
     }
 
-    .company-index a:hover {
+    .company-name:hover {
       color: #5a3de6;
     }
 
-    .company-index .meta {
-      font-size: 13px;
-      color: #999;
-      margin-left: 8px;
+    .conviction-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      position: relative;
+      top: -1px;
     }
 
-    /* Article page */
+    .conviction-dot.high { background: #22c55e; }
+    .conviction-dot.medium-high { background: #86efac; }
+    .conviction-dot.medium { background: #fbbf24; }
+    .conviction-dot.low-medium { background: #f97316; }
+    .conviction-dot.low { background: #ef4444; }
+
+    .company-oneliner {
+      font-size: 13px;
+      color: #999;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      gap: 14px;
+      font-size: 11px;
+      color: #bbb;
+      margin-bottom: 24px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Back link */
     .back-link {
       display: inline-block;
       margin-bottom: 32px;
@@ -178,7 +289,6 @@
       margin: 28px 0;
     }
 
-    /* Tables */
     .md table {
       width: 100%;
       border-collapse: collapse;
@@ -206,26 +316,18 @@
       background: #fafafa;
     }
 
-    /* Images */
     .md img {
       max-width: 100%;
       height: auto;
       margin: 12px 0;
     }
 
-    /* Article meta */
     .article-meta {
       font-size: 13px;
       color: #999;
       margin-bottom: 28px;
     }
 
-    .article-meta a {
-      color: #5a3de6;
-      text-decoration: none;
-    }
-
-    /* Footer */
     .footer {
       margin-top: 60px;
       padding-top: 20px;
@@ -234,36 +336,22 @@
       color: #bbb;
     }
 
-    /* Search */
-    #search {
-      width: 100%;
-      border: 1px solid #ddd;
-      padding: 8px 10px;
-      font-family: inherit;
-      font-size: 14px;
-      color: #111;
-      margin-bottom: 24px;
-      outline: none;
-      background: #fff;
-    }
-
-    #search:focus {
-      border-color: #999;
-    }
-
-    #search::placeholder {
-      color: #bbb;
-    }
-
-    /* Scrollbar */
     ::-webkit-scrollbar { width: 0; }
+
+    /* No results */
+    .no-results {
+      font-size: 14px;
+      color: #999;
+      padding: 20px 0;
+      display: none;
+    }
   </style>
 </head>
 <body>
   <div id="app"></div>
 
   <script>
-    // Simple markdown → HTML
+    // Markdown parser
     function parseMd(md) {
       let html = md
         .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -280,7 +368,6 @@
         .replace(/^&gt; (.+)$/gm, '<blockquote><p>$1</p></blockquote>')
         .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />');
 
-      // Tables
       html = html.replace(/^(\|.+\|)\n(\|[\s\-:|]+\|)\n((?:\|.+\|\n?)*)/gm, (match, header, sep, body) => {
         const ths = header.split('|').filter(c => c.trim()).map(c => `<th>${c.trim()}</th>`).join('');
         const rows = body.trim().split('\n').map(row => {
@@ -290,19 +377,16 @@
         return `<table><thead><tr>${ths}</tr></thead><tbody>${rows}</tbody></table>`;
       });
 
-      // Unordered lists
       html = html.replace(/^((?:- .+\n?)+)/gm, (match) => {
         const items = match.trim().split('\n').map(line => `<li>${line.replace(/^- /, '')}</li>`).join('');
         return `<ul>${items}</ul>`;
       });
 
-      // Ordered lists
       html = html.replace(/^((?:\d+\. .+\n?)+)/gm, (match) => {
         const items = match.trim().split('\n').map(line => `<li>${line.replace(/^\d+\. /, '')}</li>`).join('');
         return `<ol>${items}</ol>`;
       });
 
-      // Paragraphs
       html = html.split('\n\n').map(block => {
         block = block.trim();
         if (!block) return '';
@@ -315,75 +399,144 @@
       return html;
     }
 
-    function extractMeta(md) {
-      const meta = {};
-      const nameMatch = md.match(/^# (.+)$/m);
-      meta.name = nameMatch ? nameMatch[1] : 'Unknown';
-
-      const websiteMatch = md.match(/\*\*Website:\*\*\s*\[.*?\]\((.*?)\)/);
-      meta.website = websiteMatch ? websiteMatch[1] : '';
-
-      const hqMatch = md.match(/\*\*HQ:\*\*\s*(.+)$/m);
-      meta.hq = hqMatch ? hqMatch[1].trim() : '';
-
-      const stageMatch = md.match(/\*\*Stage:\*\*\s*(.+)$/m);
-      meta.stage = stageMatch ? stageMatch[1].trim() : '';
-
-      return meta;
+    function extractName(md) {
+      const m = md.match(/^# (.+)$/m);
+      return m ? m[1] : 'Unknown';
     }
 
     // State
-    let companies = [];
-    let currentView = 'index'; // 'index' or 'article'
-    let currentCompany = null;
+    let manifest = null;
+    let allCompanies = []; // flat list with category info
+    let activeFilter = 'all';
+    let searchQuery = '';
 
     async function loadCompanies() {
       const res = await fetch('companies/manifest.json');
-      const manifest = await res.json();
+      manifest = await res.json();
 
-      companies = await Promise.all(manifest.files.map(async (file) => {
-        const res = await fetch(`companies/${file}`);
-        const md = await res.text();
-        const meta = extractMeta(md);
-        return { file, md, meta };
-      }));
+      // Load all company markdown in parallel
+      const loadPromises = [];
+      for (const cat of manifest.categories) {
+        for (const co of cat.companies) {
+          loadPromises.push(
+            fetch(`companies/${co.file}`).then(r => r.text()).then(md => ({
+              file: co.file,
+              md,
+              name: extractName(md),
+              conviction: co.conviction,
+              oneliner: co.oneliner,
+              categoryId: cat.id,
+              categoryName: cat.name
+            }))
+          );
+        }
+      }
 
-      // Check URL hash for direct link
+      allCompanies = await Promise.all(loadPromises);
+
+      // Check hash for direct link
       const hash = window.location.hash.slice(1);
       if (hash) {
-        const found = companies.find(c => c.file.replace('.md', '') === hash);
+        const found = allCompanies.find(c => c.file.replace('.md', '') === hash);
         if (found) { showArticle(found); return; }
       }
 
       showIndex();
     }
 
+    function getConvictionClass(c) {
+      return c.toLowerCase().replace(' ', '-');
+    }
+
+    function getVisibleCompanies() {
+      return allCompanies.filter(c => {
+        const matchCategory = activeFilter === 'all' || c.categoryId === activeFilter;
+        const matchSearch = !searchQuery ||
+          c.name.toLowerCase().includes(searchQuery) ||
+          c.oneliner.toLowerCase().includes(searchQuery) ||
+          c.md.toLowerCase().includes(searchQuery);
+        return matchCategory && matchSearch;
+      });
+    }
+
     function showIndex() {
-      currentView = 'index';
-      currentCompany = null;
       window.location.hash = '';
+      const visible = getVisibleCompanies();
+
+      // Group by category
+      const groups = {};
+      for (const cat of manifest.categories) {
+        const items = visible.filter(c => c.categoryId === cat.id);
+        if (items.length > 0) {
+          groups[cat.id] = { name: cat.name, items };
+        }
+      }
+
+      const totalCount = allCompanies.length;
+      const visibleCount = visible.length;
 
       const app = document.getElementById('app');
       app.innerHTML = `
         <div class="index-header">
           <h1>research vault</h1>
-          <p>${companies.length} companies</p>
+          <p>${totalCount} companies across ${manifest.categories.length} categories</p>
         </div>
-        <input type="text" id="search" placeholder="search..." oninput="filterList(this.value)" />
-        <ul class="company-index" id="list">
-          ${companies.map((c, i) => `
-            <li data-i="${i}">
-              <a href="#${c.file.replace('.md', '')}" onclick="event.preventDefault(); showArticle(companies[${i}])">${c.meta.name}</a><span class="meta">${c.meta.stage ? c.meta.stage.split('(')[0].trim() : ''}${c.meta.hq ? ' · ' + c.meta.hq : ''}</span>
-            </li>
-          `).join('')}
-        </ul>
+        <input type="text" id="search" placeholder="search companies..." value="${searchQuery}" />
+        <div class="filter-bar">
+          <button class="filter-btn ${activeFilter === 'all' ? 'active' : ''}" onclick="setFilter('all')">All</button>
+          ${manifest.categories.map(cat => {
+            const count = allCompanies.filter(c => c.categoryId === cat.id).length;
+            return `<button class="filter-btn ${activeFilter === cat.id ? 'active' : ''}" onclick="setFilter('${cat.id}')">${cat.name} <span style="opacity:0.5">${count}</span></button>`;
+          }).join('')}
+        </div>
+        <div class="legend">
+          <span class="legend-item"><span class="conviction-dot high"></span> High</span>
+          <span class="legend-item"><span class="conviction-dot medium-high"></span> Med-High</span>
+          <span class="legend-item"><span class="conviction-dot medium"></span> Medium</span>
+          <span class="legend-item"><span class="conviction-dot low-medium"></span> Low-Med</span>
+          <span class="legend-item"><span class="conviction-dot low"></span> Low</span>
+        </div>
+        ${Object.keys(groups).length === 0
+          ? '<div class="no-results" style="display:block">No companies match your search.</div>'
+          : Object.values(groups).map(group => `
+          <div class="category">
+            <div class="category-header">${group.name}<span class="count">${group.items.length}</span></div>
+            <ul class="company-list">
+              ${group.items.map(c => `
+                <li class="company-item">
+                  <span class="conviction-dot ${getConvictionClass(c.conviction)}" title="${c.conviction}"></span>
+                  <a class="company-name" href="#${c.file.replace('.md', '')}" onclick="event.preventDefault(); showArticleByFile('${c.file}')">${c.name}</a>
+                  <span class="company-oneliner">${c.oneliner}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        `).join('')}
         <div class="footer">plain hypertext. no frameworks.</div>
       `;
+
+      // Bind search
+      document.getElementById('search').addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase();
+        showIndex();
+        // Restore cursor position
+        const input = document.getElementById('search');
+        input.focus();
+        input.setSelectionRange(input.value.length, input.value.length);
+      });
+    }
+
+    function setFilter(id) {
+      activeFilter = id;
+      showIndex();
+    }
+
+    function showArticleByFile(file) {
+      const found = allCompanies.find(c => c.file === file);
+      if (found) showArticle(found);
     }
 
     function showArticle(company) {
-      currentView = 'article';
-      currentCompany = company;
       window.location.hash = company.file.replace('.md', '');
 
       const app = document.getElementById('app');
@@ -400,20 +553,11 @@
       window.scrollTo(0, 0);
     }
 
-    function filterList(q) {
-      q = q.toLowerCase();
-      document.querySelectorAll('#list li').forEach((li, i) => {
-        const c = companies[i];
-        const match = c.meta.name.toLowerCase().includes(q) || c.md.toLowerCase().includes(q);
-        li.style.display = match ? '' : 'none';
-      });
-    }
-
     // Handle back/forward
     window.addEventListener('hashchange', () => {
       const hash = window.location.hash.slice(1);
       if (!hash) { showIndex(); return; }
-      const found = companies.find(c => c.file.replace('.md', '') === hash);
+      const found = allCompanies.find(c => c.file.replace('.md', '') === hash);
       if (found) showArticle(found);
     });
 
