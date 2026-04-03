@@ -4,52 +4,58 @@
       "name": "Bio & Drug Discovery",
       "id": "bio",
       "companies": [
-        { "file": "proxima.md", "conviction": "HIGH", "oneliner": "Programmable protein-protein interactions" },
-        { "file": "boltz.md", "conviction": "HIGH", "oneliner": "Open-source biomolecular structure prediction (AlphaFold3 alternative)" },
-        { "file": "evo2.md", "conviction": "HIGH", "oneliner": "40B-param DNA foundation model across all life" },
-        { "file": "primamente.md", "conviction": "MEDIUM-HIGH", "oneliner": "Epigenomic foundation models for Alzheimer's diagnostics" },
-        { "file": "ditto-bio.md", "conviction": "MEDIUM-HIGH", "oneliner": "Mining parasite proteins for autoimmune drugs" },
-        { "file": "genbio-ai.md", "conviction": "MEDIUM", "oneliner": "Multi-scale digital organism (DNA→RNA→Protein→Cell→Tissue)" },
-        { "file": "origin-bio.md", "conviction": "MEDIUM", "oneliner": "AI safety layer for cell and gene therapies" },
-        { "file": "biocog.md", "conviction": "MEDIUM", "oneliner": "AI diagnostic reasoning from whole genome sequencing ($490 DTC)" },
-        { "file": "ligand-ai.md", "conviction": "LOW-MEDIUM", "oneliner": "Computational peptide nanoparticles for gene therapy delivery" },
-        { "file": "matrix-bio.md", "conviction": "LOW", "oneliner": "Smartphone-based 100+ biomarker testing ($5/test)" }
+        { "file": "proxima.md", "conviction": "HIGH", "oneliner": "Programmable protein-protein interactions", "website": "proximafusion.com" },
+        { "file": "boltz.md", "conviction": "HIGH", "oneliner": "Open-source biomolecular structure prediction (AlphaFold3 alternative)", "website": "boltz.bio" },
+        { "file": "evo2.md", "conviction": "HIGH", "oneliner": "40B-param DNA foundation model across all life", "website": "arcinstitute.org" },
+        { "file": "primamente.md", "conviction": "MEDIUM-HIGH", "oneliner": "Epigenomic foundation models for Alzheimer's diagnostics", "website": "primamente.com" },
+        { "file": "ditto-bio.md", "conviction": "MEDIUM-HIGH", "oneliner": "Mining parasite proteins for autoimmune drugs", "website": "dittobio.com" },
+        { "file": "strand-ai.md", "conviction": "MEDIUM-HIGH", "oneliner": "Foundation model predicting 180+ protein biomarkers from H&E slides", "website": "strandai.com" },
+        { "file": "genbio-ai.md", "conviction": "MEDIUM", "oneliner": "Multi-scale digital organism (DNA→RNA→Protein→Cell→Tissue)", "website": "genbio.ai" },
+        { "file": "origin-bio.md", "conviction": "MEDIUM", "oneliner": "AI safety layer for cell and gene therapies", "website": "origin.bio" },
+        { "file": "biocog.md", "conviction": "MEDIUM", "oneliner": "AI diagnostic reasoning from whole genome sequencing ($490 DTC)", "website": "biocog.io" },
+        { "file": "ligand-ai.md", "conviction": "LOW-MEDIUM", "oneliner": "Computational peptide nanoparticles for gene therapy delivery", "website": "ligandai.com" },
+        { "file": "matrix-bio.md", "conviction": "LOW", "oneliner": "Smartphone-based 100+ biomarker testing ($5/test)", "website": "trymatrix.bio" },
+        { "file": "coefficient-bio.md", "conviction": "HIGH", "oneliner": "Lab-in-the-loop autonomous drug design (acquired by Anthropic ~$400M)", "website": "coefficientbio.com" }
       ]
     },
     {
       "name": "AI Infrastructure & Compute",
       "id": "infra",
       "companies": [
-        { "file": "inferact.md", "conviction": "HIGH", "oneliner": "Commercial entity behind vLLM — the universal inference engine" },
-        { "file": "turbopuffer.md", "conviction": "HIGH", "oneliner": "Object-storage-native vector + full-text search database" },
-        { "file": "standardkernel.md", "conviction": "HIGH", "oneliner": "AI that writes GPU kernels better than human engineers" },
-        { "file": "sf-compute.md", "conviction": "MEDIUM-HIGH", "oneliner": "GPU commodities marketplace with tradable contracts" },
-        { "file": "etched.md", "conviction": "MEDIUM", "oneliner": "Transformer-specific ASIC for inference" },
-        { "file": "cumulus-labs.md", "conviction": "MEDIUM", "oneliner": "Hardware-specific inference engine for NVIDIA Grace Hopper" },
-        { "file": "fireworks-ai.md", "conviction": "MEDIUM-HIGH", "oneliner": "PyTorch team's inference platform — 13T+ tokens/day, $4B valuation" }
+        { "file": "inferact.md", "conviction": "HIGH", "oneliner": "Commercial entity behind vLLM — the universal inference engine", "website": "inferact.ai" },
+        { "file": "turbopuffer.md", "conviction": "HIGH", "oneliner": "Object-storage-native vector + full-text search database", "website": "turbopuffer.com" },
+        { "file": "standardkernel.md", "conviction": "HIGH", "oneliner": "AI that writes GPU kernels better than human engineers", "website": "standardkernel.com" },
+        { "file": "fireworks-ai.md", "conviction": "MEDIUM-HIGH", "oneliner": "PyTorch team's inference platform — 13T+ tokens/day, $4B valuation", "website": "fireworks.ai" },
+        { "file": "sf-compute.md", "conviction": "MEDIUM-HIGH", "oneliner": "GPU commodities marketplace with tradable contracts", "website": "sfcompute.com" },
+        { "file": "etched.md", "conviction": "MEDIUM", "oneliner": "Transformer-specific ASIC for inference", "website": "etched.com" },
+        { "file": "cumulus-labs.md", "conviction": "MEDIUM", "oneliner": "Hardware-specific inference engine for NVIDIA Grace Hopper", "website": "cumuluslabs.io" },
+        { "file": "amp-pbc-raw.md", "conviction": "PENDING", "oneliner": "Independent AI compute grid pooling frontier teams (Anjney Midha / ex-a16z)", "website": "amppublic.com" }
       ]
     },
     {
       "name": "AI Models & Research",
       "id": "models",
       "companies": [
-        { "file": "goodfire.md", "conviction": "HIGH", "oneliner": "Mechanistic interpretability — make AI transparent and editable" },
-        { "file": "sakana.md", "conviction": "MEDIUM-HIGH", "oneliner": "Nature-inspired AI / evolutionary model merging (Japan)" },
-        { "file": "standard-intelligence.md", "conviction": "MEDIUM-HIGH", "oneliner": "Computer use agents learned from video, not screenshots" },
-        { "file": "moonlake.md", "conviction": "MEDIUM-HIGH", "oneliner": "Programmable world models / generative game engine" },
-        { "file": "workshop-labs.md", "conviction": "MEDIUM", "oneliner": "Privacy-preserving personal AI on confidential compute" },
-        { "file": "typesafe.md", "conviction": "MEDIUM", "oneliner": "Frontier AI for autonomous software systems (AI-to-computer)" }
+        { "file": "goodfire.md", "conviction": "HIGH", "oneliner": "Mechanistic interpretability — make AI transparent and editable", "website": "goodfire.ai" },
+        { "file": "sakana.md", "conviction": "MEDIUM-HIGH", "oneliner": "Nature-inspired AI / evolutionary model merging (Japan)", "website": "sakana.ai" },
+        { "file": "standard-intelligence.md", "conviction": "MEDIUM-HIGH", "oneliner": "Computer use agents learned from video, not screenshots", "website": "standard.ai" },
+        { "file": "moonlake.md", "conviction": "MEDIUM-HIGH", "oneliner": "Programmable world models / generative game engine", "website": "moonlakeai.com" },
+        { "file": "workshop-labs.md", "conviction": "MEDIUM", "oneliner": "Privacy-preserving personal AI on confidential compute", "website": "workshoplabs.ai" },
+        { "file": "typesafe.md", "conviction": "MEDIUM", "oneliner": "Frontier AI for autonomous software systems (AI-to-computer)", "website": "typesafe.ai" },
+        { "file": "black-forest-labs.md", "conviction": "HIGH", "oneliner": "Inventors of latent diffusion — FLUX image generation, 40% market share, $3.25B", "website": "bfl.ai" },
+        { "file": "general-intuition.md", "conviction": "HIGH", "oneliner": "World models from 2.5B gameplay clips — spatial reasoning foundation models, $3.5B seed", "website": "generalintuition.com" }
       ]
     },
     {
       "name": "AI Applications",
       "id": "apps",
       "companies": [
-        { "file": "simile.md", "conviction": "HIGH", "oneliner": "AI simulation of society with digital twins of real humans" },
-        { "file": "limbic.md", "conviction": "HIGH", "oneliner": "Regulated AI therapy deployed to 650K+ NHS patients" },
-        { "file": "edison-scientific.md", "conviction": "HIGH", "oneliner": "Autonomous AI Scientists that compress months of research into hours" },
-        { "file": "fleetai.md", "conviction": "MEDIUM", "oneliner": "Simulation training gyms for AI agents" },
-        { "file": "aaru.md", "conviction": "MEDIUM", "oneliner": "AI population simulation for behavioral prediction" }
+        { "file": "simile.md", "conviction": "HIGH", "oneliner": "AI simulation of society with digital twins of real humans", "website": "simile.com" },
+        { "file": "limbic.md", "conviction": "HIGH", "oneliner": "Regulated AI therapy deployed to 650K+ NHS patients", "website": "limbic.ai" },
+        { "file": "edison-scientific.md", "conviction": "HIGH", "oneliner": "Autonomous AI Scientists that compress months of research into hours", "website": "edisonscientific.ai" },
+        { "file": "fleetai.md", "conviction": "MEDIUM", "oneliner": "Simulation training gyms for AI agents", "website": "fleet.ai" },
+        { "file": "aaru.md", "conviction": "MEDIUM", "oneliner": "AI population simulation for behavioral prediction", "website": "aaru.ai" },
+        { "file": "fulcrum.md", "conviction": "MEDIUM-HIGH", "oneliner": "Agent oversight — critics, auditors, and orchestrators for AI coding agents", "website": "fulcrum.inc" }
       ]
     }
   ]

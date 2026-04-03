@@ -1,567 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>research vault</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>research vault</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { max-width: 640px; margin: 48px auto; padding: 0 20px 120px; font-family: system-ui, -apple-system, sans-serif; font-size: 14.5px; line-height: 1.7; color: #111; }
+a { color: inherit; text-decoration-line: underline; text-decoration-color: #bbb; text-underline-offset: 2px; }
+a:hover { text-decoration-color: #111; }
 
-    body {
-      font-family: Georgia, 'Times New Roman', serif;
-      background: #fff;
-      color: #111;
-      line-height: 1.7;
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 48px 24px 120px;
-    }
+/* Index */
+h1 { font-size: 15px; font-weight: 600; margin: 0 0 4px; }
+h1 span { font-weight: 400; color: #999; }
+input[type="text"] { width: 100%; padding: 6px 0; font-size: 13px; border: none; border-bottom: 1px solid #ddd; margin-bottom: 12px; outline: none; font-family: inherit; background: transparent; color: #111; }
+input[type="text"]:focus { border-bottom-color: #111; }
+input[type="text"]::placeholder { color: #ccc; }
 
-    /* Index page */
-    .index-header {
-      margin-bottom: 32px;
-    }
+.filter-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+.filter-btn { background: none; border: 1px solid #ddd; padding: 3px 10px; font-family: inherit; font-size: 11px; color: #888; cursor: pointer; transition: all .15s; }
+.filter-btn:hover { border-color: #999; color: #333; }
+.filter-btn.active { background: #111; color: #fff; border-color: #111; }
 
-    .index-header h1 {
-      font-size: 18px;
-      font-weight: normal;
-      color: #111;
-      margin-bottom: 4px;
-    }
+.legend { display: flex; gap: 12px; font-size: 10px; color: #bbb; margin-bottom: 20px; }
+.legend-item { display: flex; align-items: center; gap: 3px; }
 
-    .index-header p {
-      font-size: 14px;
-      color: #666;
-    }
+.section { margin-bottom: 28px; }
+.section-head { font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #eee; }
+.section-head .ct { font-weight: 400; color: #ccc; margin-left: 3px; }
 
-    /* Search */
-    #search {
-      width: 100%;
-      border: 1px solid #ddd;
-      padding: 8px 10px;
-      font-family: inherit;
-      font-size: 14px;
-      color: #111;
-      margin-bottom: 8px;
-      outline: none;
-      background: #fff;
-    }
+.co { padding: 5px 0; border-bottom: 1px solid #f5f5f5; display: flex; align-items: center; gap: 7px; }
+.co:last-child { border-bottom: none; }
+.dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.dot.high { background: #22c55e; }
+.dot.medium-high { background: #86efac; }
+.dot.medium { background: #fbbf24; }
+.dot.low-medium { background: #f97316; }
+.dot.low { background: #ef4444; }
+.co-name { font-size: 14px; font-weight: 500; color: #111; text-decoration: none; white-space: nowrap; }
+.co-name:hover { color: #5a3de6; text-decoration: none; }
+.co-liner { font-size: 12px; color: #aaa; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-    #search:focus {
-      border-color: #999;
-    }
+.empty { text-align: center; padding: 40px 0; color: #ccc; font-size: 13px; }
+.footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #eee; font-size: 11px; color: #ccc; }
 
-    #search::placeholder {
-      color: #bbb;
-    }
+/* Article */
+.back { display: inline-block; margin-bottom: 24px; font-size: 13px; color: #999; text-decoration: none; }
+.back:hover { color: #111; }
 
-    /* Filter bar */
-    .filter-bar {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-      font-size: 12px;
-    }
+.hero { margin-bottom: 4px; }
+.hero-name { font-size: 20px; font-weight: 600; }
+.hero-meta { font-size: 12px; color: #888; margin-bottom: 6px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.hero-meta a { font-size: 12px; }
+.conv-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.4px; padding: 1px 6px; border-radius: 3px; }
+.conv-tag.high { background: #dcfce7; color: #16a34a; }
+.conv-tag.medium-high { background: #ecfccb; color: #65a30d; }
+.conv-tag.medium { background: #fef9c3; color: #ca8a04; }
+.conv-tag.low-medium { background: #ffedd5; color: #ea580c; }
+.conv-tag.low { background: #fee2e2; color: #dc2626; }
 
-    .filter-btn {
-      background: none;
-      border: 1px solid #ddd;
-      padding: 3px 10px;
-      font-family: inherit;
-      font-size: 12px;
-      color: #666;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
+.toc { border: 1px solid #eee; padding: 10px 14px; margin-bottom: 24px; font-size: 12px; }
+.toc-title { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #999; margin-bottom: 6px; }
+.toc-list { list-style: none; columns: 2; column-gap: 16px; }
+.toc-list a { color: #666; text-decoration: none; display: block; padding: 1px 0; line-height: 1.5; }
+.toc-list a:hover { color: #5a3de6; }
 
-    .filter-btn:hover {
-      border-color: #999;
-      color: #111;
-    }
+/* Markdown */
+.md h1 { display: none; }
+.md h2 { font-size: 15px; font-weight: 600; margin: 32px 0 10px; color: #111; scroll-margin-top: 20px; }
+.md h3 { font-size: 14px; font-weight: 600; margin: 24px 0 6px; color: #333; scroll-margin-top: 20px; }
+.md h4 { font-size: 13px; font-weight: 600; margin: 18px 0 4px; color: #555; }
+.md p { margin-bottom: 12px; font-size: 14px; color: #333; }
+.md strong { color: #111; }
+.md em { color: #444; }
+.md a { color: #5a3de6; text-decoration-color: #ccc; }
+.md a:hover { text-decoration-color: #5a3de6; }
+.md ul, .md ol { margin-bottom: 12px; padding-left: 18px; }
+.md li { margin-bottom: 3px; font-size: 14px; color: #333; }
+.md blockquote { border-left: 1.5px solid #ddd; padding-left: 12px; margin: 12px 0; color: #555; font-style: italic; }
+.md blockquote p { margin-bottom: 0; color: #555; }
+.md code { font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px; }
+.md pre { background: #f9f9f9; border: 1px solid #eee; padding: 12px 14px; overflow-x: auto; margin: 12px 0; font-size: 12px; line-height: 1.5; }
+.md pre code { background: none; padding: 0; }
+.md hr { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+.md table { width: 100%; border-collapse: collapse; margin: 12px 0 16px; font-size: 12px; }
+.md th { text-align: left; padding: 6px 8px; border-bottom: 1px solid #ddd; font-weight: 500; color: #999; font-size: 10px; text-transform: uppercase; letter-spacing: 0.3px; }
+.md td { padding: 5px 8px; border-bottom: 1px solid #f5f5f5; color: #333; vertical-align: top; }
+.md tr:hover td { background: #fafafa; }
+.md img { max-width: 100%; height: auto; margin: 10px 0; }
 
-    .filter-btn.active {
-      background: #111;
-      color: #fff;
-      border-color: #111;
-    }
-
-    /* Category sections */
-    .category {
-      margin-bottom: 36px;
-    }
-
-    .category-header {
-      font-size: 13px;
-      font-weight: bold;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 10px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .category-header .count {
-      font-weight: normal;
-      color: #ccc;
-      margin-left: 4px;
-    }
-
-    .company-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .company-item {
-      padding: 8px 0;
-      border-bottom: 1px solid #f5f5f5;
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-    }
-
-    .company-item:last-child {
-      border-bottom: none;
-    }
-
-    .company-name {
-      color: #111;
-      text-decoration: none;
-      font-size: 15px;
-      white-space: nowrap;
-    }
-
-    .company-name:hover {
-      color: #5a3de6;
-    }
-
-    .conviction-dot {
-      display: inline-block;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      position: relative;
-      top: -1px;
-    }
-
-    .conviction-dot.high { background: #22c55e; }
-    .conviction-dot.medium-high { background: #86efac; }
-    .conviction-dot.medium { background: #fbbf24; }
-    .conviction-dot.low-medium { background: #f97316; }
-    .conviction-dot.low { background: #ef4444; }
-
-    .company-oneliner {
-      font-size: 13px;
-      color: #999;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    /* Legend */
-    .legend {
-      display: flex;
-      gap: 14px;
-      font-size: 11px;
-      color: #bbb;
-      margin-bottom: 24px;
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* Back link */
-    .back-link {
-      display: inline-block;
-      margin-bottom: 32px;
-      font-size: 14px;
-      color: #999;
-      text-decoration: none;
-    }
-
-    .back-link:hover {
-      color: #5a3de6;
-    }
-
-    /* Markdown content */
-    .md h1 {
-      font-size: 24px;
-      font-weight: normal;
-      margin: 0 0 4px;
-      line-height: 1.3;
-    }
-
-    .md h2 {
-      font-size: 17px;
-      font-weight: bold;
-      margin: 36px 0 12px;
-      color: #111;
-    }
-
-    .md h3 {
-      font-size: 15px;
-      font-weight: bold;
-      margin: 28px 0 8px;
-      color: #333;
-    }
-
-    .md h4 {
-      font-size: 14px;
-      font-weight: bold;
-      margin: 20px 0 6px;
-      color: #555;
-    }
-
-    .md p {
-      margin-bottom: 14px;
-      font-size: 15px;
-      color: #333;
-    }
-
-    .md strong { color: #111; }
-
-    .md a {
-      color: #5a3de6;
-      text-decoration: underline;
-      text-decoration-color: #ccc;
-      text-underline-offset: 2px;
-    }
-
-    .md a:hover {
-      text-decoration-color: #5a3de6;
-    }
-
-    .md ul, .md ol {
-      margin-bottom: 14px;
-      padding-left: 20px;
-    }
-
-    .md li {
-      margin-bottom: 4px;
-      font-size: 15px;
-      color: #333;
-    }
-
-    .md blockquote {
-      border-left: 2px solid #ddd;
-      padding-left: 16px;
-      margin: 16px 0;
-      color: #555;
-      font-style: italic;
-    }
-
-    .md blockquote p {
-      margin-bottom: 0;
-      color: #555;
-    }
-
-    .md code {
-      font-family: 'SF Mono', Menlo, Consolas, monospace;
-      font-size: 13px;
-      background: #f5f5f5;
-      padding: 1px 5px;
-      border-radius: 3px;
-    }
-
-    .md pre {
-      background: #f9f9f9;
-      border: 1px solid #eee;
-      padding: 14px 16px;
-      overflow-x: auto;
-      margin: 14px 0;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .md pre code {
-      background: none;
-      padding: 0;
-    }
-
-    .md hr {
-      border: none;
-      border-top: 1px solid #e0e0e0;
-      margin: 28px 0;
-    }
-
-    .md table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 14px 0 20px;
-      font-size: 13px;
-    }
-
-    .md th {
-      text-align: left;
-      padding: 8px 10px;
-      border-bottom: 2px solid #ddd;
-      font-weight: bold;
-      color: #111;
-      font-size: 12px;
-    }
-
-    .md td {
-      padding: 7px 10px;
-      border-bottom: 1px solid #eee;
-      color: #333;
-      vertical-align: top;
-    }
-
-    .md tr:hover td {
-      background: #fafafa;
-    }
-
-    .md img {
-      max-width: 100%;
-      height: auto;
-      margin: 12px 0;
-    }
-
-    .article-meta {
-      font-size: 13px;
-      color: #999;
-      margin-bottom: 28px;
-    }
-
-    .footer {
-      margin-top: 60px;
-      padding-top: 20px;
-      border-top: 1px solid #eee;
-      font-size: 12px;
-      color: #bbb;
-    }
-
-    ::-webkit-scrollbar { width: 0; }
-
-    /* No results */
-    .no-results {
-      font-size: 14px;
-      color: #999;
-      padding: 20px 0;
-      display: none;
-    }
-  </style>
+@media (max-width: 500px) {
+  .toc-list { columns: 1; }
+  .co-liner { display: none; }
+}
+</style>
 </head>
 <body>
-  <div id="app"></div>
+<div id="app"></div>
+<script>
+function parseMd(md) {
+  let html = md
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/^#### (.+)$/gm,'<h4>$1</h4>')
+    .replace(/^### (.+)$/gm,(_,t)=>`<h3 id="${slug(t)}">${t}</h3>`)
+    .replace(/^## (.+)$/gm,(_,t)=>`<h2 id="${slug(t)}">${t}</h2>`)
+    .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    .replace(/^---$/gm,'<hr />')
+    .replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>')
+    .replace(/^&gt; (.+)$/gm,'<blockquote><p>$1</p></blockquote>')
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g,'<img src="$2" alt="$1" />');
+  html = html.replace(/^(\|.+\|)\n(\|[\s\-:|]+\|)\n((?:\|.+\|\n?)*)/gm,(m,h,s,b)=>{
+    const ths=h.split('|').filter(c=>c.trim()).map(c=>`<th>${c.trim()}</th>`).join('');
+    const rows=b.trim().split('\n').map(r=>{const tds=r.split('|').filter(c=>c.trim()).map(c=>`<td>${c.trim()}</td>`).join('');return`<tr>${tds}</tr>`;}).join('');
+    return`<table><thead><tr>${ths}</tr></thead><tbody>${rows}</tbody></table>`;
+  });
+  html=html.replace(/^((?:- .+\n?)+)/gm,m=>{const items=m.trim().split('\n').map(l=>`<li>${l.replace(/^- /,'')}</li>`).join('');return`<ul>${items}</ul>`;});
+  html=html.replace(/^((?:\d+\. .+\n?)+)/gm,m=>{const items=m.trim().split('\n').map(l=>`<li>${l.replace(/^\d+\. /,'')}</li>`).join('');return`<ol>${items}</ol>`;});
+  html=html.split('\n\n').map(b=>{b=b.trim();if(!b)return'';if(/^<[huptbola]/.test(b))return b;if(/^<hr/.test(b))return b;if(/^<img/.test(b))return b;return`<p>${b.replace(/\n/g,'<br />')}</p>`;}).join('\n');
+  return html;
+}
+function slug(t){return t.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');}
+function extractName(md){const m=md.match(/^# (.+)$/m);return m?m[1]:'Unknown';}
+function extractH2s(md){return[...md.matchAll(/^## (.+)$/gm)].map(m=>({title:m[1],id:slug(m[1])}));}
+function convClass(c){return c.toLowerCase().replace(/\s+/g,'-');}
 
-  <script>
-    // Markdown parser
-    function parseMd(md) {
-      let html = md
-        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-        .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
-        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-        .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-        .replace(/^---$/gm, '<hr />')
-        .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.+?)\*/g, '<em>$1</em>')
-        .replace(/`([^`]+)`/g, '<code>$1</code>')
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
-        .replace(/^&gt; (.+)$/gm, '<blockquote><p>$1</p></blockquote>')
-        .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />');
+let manifest=null, all=[], filter='all', q='';
 
-      html = html.replace(/^(\|.+\|)\n(\|[\s\-:|]+\|)\n((?:\|.+\|\n?)*)/gm, (match, header, sep, body) => {
-        const ths = header.split('|').filter(c => c.trim()).map(c => `<th>${c.trim()}</th>`).join('');
-        const rows = body.trim().split('\n').map(row => {
-          const tds = row.split('|').filter(c => c.trim()).map(c => `<td>${c.trim()}</td>`).join('');
-          return `<tr>${tds}</tr>`;
-        }).join('');
-        return `<table><thead><tr>${ths}</tr></thead><tbody>${rows}</tbody></table>`;
-      });
+async function init(){
+  const r=await fetch('companies/manifest.json');
+  manifest=await r.json();
+  const ps=[];
+  for(const cat of manifest.categories)for(const co of cat.companies)
+    ps.push(fetch(`companies/${co.file}`).then(r=>r.text()).then(md=>({file:co.file,md,name:extractName(md),conviction:co.conviction,oneliner:co.oneliner,catId:cat.id,catName:cat.name})));
+  all=await Promise.all(ps);
+  const hash=location.hash.slice(1);
+  if(hash){const f=all.find(c=>c.file.replace('.md','')==hash);if(f){article(f);return;}}
+  index();
+}
 
-      html = html.replace(/^((?:- .+\n?)+)/gm, (match) => {
-        const items = match.trim().split('\n').map(line => `<li>${line.replace(/^- /, '')}</li>`).join('');
-        return `<ul>${items}</ul>`;
-      });
+function visible(){
+  return all.filter(c=>{
+    const mc=filter==='all'||c.catId===filter;
+    const ms=!q||c.name.toLowerCase().includes(q)||c.oneliner.toLowerCase().includes(q)||c.md.toLowerCase().includes(q);
+    return mc&&ms;
+  });
+}
 
-      html = html.replace(/^((?:\d+\. .+\n?)+)/gm, (match) => {
-        const items = match.trim().split('\n').map(line => `<li>${line.replace(/^\d+\. /, '')}</li>`).join('');
-        return `<ol>${items}</ol>`;
-      });
-
-      html = html.split('\n\n').map(block => {
-        block = block.trim();
-        if (!block) return '';
-        if (/^<[huptbola]/.test(block)) return block;
-        if (/^<hr/.test(block)) return block;
-        if (/^<img/.test(block)) return block;
-        return `<p>${block.replace(/\n/g, '<br />')}</p>`;
-      }).join('\n');
-
-      return html;
-    }
-
-    function extractName(md) {
-      const m = md.match(/^# (.+)$/m);
-      return m ? m[1] : 'Unknown';
-    }
-
-    // State
-    let manifest = null;
-    let allCompanies = []; // flat list with category info
-    let activeFilter = 'all';
-    let searchQuery = '';
-
-    async function loadCompanies() {
-      const res = await fetch('companies/manifest.json');
-      manifest = await res.json();
-
-      // Load all company markdown in parallel
-      const loadPromises = [];
-      for (const cat of manifest.categories) {
-        for (const co of cat.companies) {
-          loadPromises.push(
-            fetch(`companies/${co.file}`).then(r => r.text()).then(md => ({
-              file: co.file,
-              md,
-              name: extractName(md),
-              conviction: co.conviction,
-              oneliner: co.oneliner,
-              categoryId: cat.id,
-              categoryName: cat.name
-            }))
-          );
-        }
-      }
-
-      allCompanies = await Promise.all(loadPromises);
-
-      // Check hash for direct link
-      const hash = window.location.hash.slice(1);
-      if (hash) {
-        const found = allCompanies.find(c => c.file.replace('.md', '') === hash);
-        if (found) { showArticle(found); return; }
-      }
-
-      showIndex();
-    }
-
-    function getConvictionClass(c) {
-      return c.toLowerCase().replace(' ', '-');
-    }
-
-    function getVisibleCompanies() {
-      return allCompanies.filter(c => {
-        const matchCategory = activeFilter === 'all' || c.categoryId === activeFilter;
-        const matchSearch = !searchQuery ||
-          c.name.toLowerCase().includes(searchQuery) ||
-          c.oneliner.toLowerCase().includes(searchQuery) ||
-          c.md.toLowerCase().includes(searchQuery);
-        return matchCategory && matchSearch;
-      });
-    }
-
-    function showIndex() {
-      window.location.hash = '';
-      const visible = getVisibleCompanies();
-
-      // Group by category
-      const groups = {};
-      for (const cat of manifest.categories) {
-        const items = visible.filter(c => c.categoryId === cat.id);
-        if (items.length > 0) {
-          groups[cat.id] = { name: cat.name, items };
-        }
-      }
-
-      const totalCount = allCompanies.length;
-      const visibleCount = visible.length;
-
-      const app = document.getElementById('app');
-      app.innerHTML = `
-        <div class="index-header">
-          <h1>research vault</h1>
-          <p>${totalCount} companies across ${manifest.categories.length} categories</p>
-        </div>
-        <input type="text" id="search" placeholder="search companies..." value="${searchQuery}" />
-        <div class="filter-bar">
-          <button class="filter-btn ${activeFilter === 'all' ? 'active' : ''}" onclick="setFilter('all')">All</button>
-          ${manifest.categories.map(cat => {
-            const count = allCompanies.filter(c => c.categoryId === cat.id).length;
-            return `<button class="filter-btn ${activeFilter === cat.id ? 'active' : ''}" onclick="setFilter('${cat.id}')">${cat.name} <span style="opacity:0.5">${count}</span></button>`;
-          }).join('')}
-        </div>
-        <div class="legend">
-          <span class="legend-item"><span class="conviction-dot high"></span> High</span>
-          <span class="legend-item"><span class="conviction-dot medium-high"></span> Med-High</span>
-          <span class="legend-item"><span class="conviction-dot medium"></span> Medium</span>
-          <span class="legend-item"><span class="conviction-dot low-medium"></span> Low-Med</span>
-          <span class="legend-item"><span class="conviction-dot low"></span> Low</span>
-        </div>
-        ${Object.keys(groups).length === 0
-          ? '<div class="no-results" style="display:block">No companies match your search.</div>'
-          : Object.values(groups).map(group => `
-          <div class="category">
-            <div class="category-header">${group.name}<span class="count">${group.items.length}</span></div>
-            <ul class="company-list">
-              ${group.items.map(c => `
-                <li class="company-item">
-                  <span class="conviction-dot ${getConvictionClass(c.conviction)}" title="${c.conviction}"></span>
-                  <a class="company-name" href="#${c.file.replace('.md', '')}" onclick="event.preventDefault(); showArticleByFile('${c.file}')">${c.name}</a>
-                  <span class="company-oneliner">${c.oneliner}</span>
-                </li>
-              `).join('')}
-            </ul>
+function index(){
+  location.hash='';
+  const vis=visible();
+  const groups={};
+  for(const cat of manifest.categories){const items=vis.filter(c=>c.catId===cat.id);if(items.length)groups[cat.id]={name:cat.name,items};}
+  const app=document.getElementById('app');
+  app.innerHTML=`
+    <h1>research vault <span>${all.length} companies</span></h1>
+    <input type="text" id="search" placeholder="search..." value="${q}"/>
+    <div class="filter-bar">
+      <button class="filter-btn ${filter==='all'?'active':''}" onclick="setF('all')">All</button>
+      ${manifest.categories.map(c=>{const n=all.filter(x=>x.catId===c.id).length;return`<button class="filter-btn ${filter===c.id?'active':''}" onclick="setF('${c.id}')">${c.name} <span style="opacity:.4">${n}</span></button>`;}).join('')}
+    </div>
+    <div class="legend">
+      <span class="legend-item"><span class="dot high"></span>High</span>
+      <span class="legend-item"><span class="dot medium-high"></span>Med-High</span>
+      <span class="legend-item"><span class="dot medium"></span>Medium</span>
+      <span class="legend-item"><span class="dot low-medium"></span>Low-Med</span>
+      <span class="legend-item"><span class="dot low"></span>Low</span>
+    </div>
+    ${Object.keys(groups).length===0?'<div class="empty">No matches.</div>':Object.values(groups).map(g=>`
+      <div class="section">
+        <div class="section-head">${g.name}<span class="ct">${g.items.length}</span></div>
+        ${g.items.map(c=>`
+          <div class="co">
+            <span class="dot ${convClass(c.conviction)}" title="${c.conviction}"></span>
+            <a class="co-name" href="#${c.file.replace('.md','')}" onclick="event.preventDefault();go('${c.file}')">${c.name}</a>
+            <span class="co-liner">${c.oneliner}</span>
           </div>
         `).join('')}
-        <div class="footer">plain hypertext. no frameworks.</div>
-      `;
+      </div>
+    `).join('')}
+    <div class="footer">plain hypertext &middot; no frameworks</div>
+  `;
+  document.getElementById('search').addEventListener('input',e=>{q=e.target.value.toLowerCase();index();const i=document.getElementById('search');i.focus();i.setSelectionRange(i.value.length,i.value.length);});
+}
 
-      // Bind search
-      document.getElementById('search').addEventListener('input', (e) => {
-        searchQuery = e.target.value.toLowerCase();
-        showIndex();
-        // Restore cursor position
-        const input = document.getElementById('search');
-        input.focus();
-        input.setSelectionRange(input.value.length, input.value.length);
-      });
-    }
+function setF(id){filter=id;index();}
+function go(file){const f=all.find(c=>c.file===file);if(f)article(f);}
 
-    function setFilter(id) {
-      activeFilter = id;
-      showIndex();
-    }
+function article(c){
+  location.hash=c.file.replace('.md','');
+  const h2s=extractH2s(c.md);
+  const app=document.getElementById('app');
+  app.innerHTML=`
+    <a class="back" href="#" onclick="event.preventDefault();index()">← index</a>
+    <div class="hero"><span class="hero-name">${c.name}</span></div>
+    <div class="hero-meta">
+      <span class="conv-tag ${convClass(c.conviction)}">${c.conviction}</span>
+      <span>${c.catName}</span>
+      <span style="color:#ccc">${c.oneliner}</span>
+    </div>
+    ${h2s.length>0?`
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <ul class="toc-list">${h2s.map(s=>`<li><a href="#${s.id}">${s.title}</a></li>`).join('')}</ul>
+    </div>`:''}
+    <div class="md">${parseMd(c.md)}</div>
+    <div class="footer"><a class="back" href="#" onclick="event.preventDefault();index();window.scrollTo(0,0)">← back to index</a></div>
+  `;
+  window.scrollTo(0,0);
+}
 
-    function showArticleByFile(file) {
-      const found = allCompanies.find(c => c.file === file);
-      if (found) showArticle(found);
-    }
-
-    function showArticle(company) {
-      window.location.hash = company.file.replace('.md', '');
-
-      const app = document.getElementById('app');
-      app.innerHTML = `
-        <a class="back-link" href="#" onclick="event.preventDefault(); showIndex()">← index</a>
-        <div class="md">
-          ${parseMd(company.md)}
-        </div>
-        <div class="footer">
-          <a class="back-link" href="#" onclick="event.preventDefault(); showIndex(); window.scrollTo(0,0)">← back to index</a>
-        </div>
-      `;
-
-      window.scrollTo(0, 0);
-    }
-
-    // Handle back/forward
-    window.addEventListener('hashchange', () => {
-      const hash = window.location.hash.slice(1);
-      if (!hash) { showIndex(); return; }
-      const found = allCompanies.find(c => c.file.replace('.md', '') === hash);
-      if (found) showArticle(found);
-    });
-
-    loadCompanies();
-  </script>
+window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(!h){index();return;}const f=all.find(c=>c.file.replace('.md','')==h);if(f)article(f);});
+init();
+</script>
 </body>
 </html>
