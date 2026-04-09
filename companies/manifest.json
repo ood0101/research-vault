@@ -44,7 +44,8 @@
         { "file": "typesafe.md", "conviction": "MEDIUM", "oneliner": "Frontier AI for autonomous software systems (AI-to-computer)", "website": "typesafe.ai" },
         { "file": "black-forest-labs.md", "conviction": "HIGH", "oneliner": "Inventors of latent diffusion — FLUX image generation, 40% market share, $3.25B", "website": "bfl.ai" },
         { "file": "general-intuition.md", "conviction": "HIGH", "oneliner": "World models from 2.5B gameplay clips — spatial reasoning foundation models, $3.5B seed", "website": "generalintuition.com" },
-        { "file": "generalist-ai.md", "conviction": "HIGH", "oneliner": "Robot foundation models — 500K hrs real data, 99% success, PaLM-E/RT-2 team", "website": "generalistai.com" }
+        { "file": "generalist-ai.md", "conviction": "HIGH", "oneliner": "Robot foundation models — 500K hrs real data, 99% success, PaLM-E/RT-2 team", "website": "generalistai.com" },
+        { "file": "sunday-ai.md", "conviction": "HIGH", "oneliner": "Household robot Memo — 10M real-home episodes, ALOHA/Diffusion Policy inventors, $1.15B", "website": "sunday.ai" }
       ]
     },
     {
