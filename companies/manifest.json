@@ -42,6 +42,7 @@
         { "file": "moonlake.md", "conviction": "MEDIUM-HIGH", "oneliner": "Programmable world models / generative game engine", "website": "moonlakeai.com" },
         { "file": "workshop-labs.md", "conviction": "MEDIUM", "oneliner": "Privacy-preserving personal AI on confidential compute", "website": "workshoplabs.ai" },
         { "file": "typesafe.md", "conviction": "MEDIUM", "oneliner": "Frontier AI for autonomous software systems (AI-to-computer)", "website": "typesafe.ai" },
+        { "file": "ndea.md", "conviction": "MEDIUM-HIGH", "oneliner": "AGI via DL-guided program synthesis — Keras creator + Zapier co-founder, $43M", "website": "ndea.com" },
         { "file": "black-forest-labs.md", "conviction": "HIGH", "oneliner": "Inventors of latent diffusion — FLUX image generation, 40% market share, $3.25B", "website": "bfl.ai" },
         { "file": "general-intuition.md", "conviction": "HIGH", "oneliner": "World models from 2.5B gameplay clips — spatial reasoning foundation models, $3.5B seed", "website": "generalintuition.com" },
         { "file": "generalist-ai.md", "conviction": "HIGH", "oneliner": "Robot foundation models — 500K hrs real data, 99% success, PaLM-E/RT-2 team", "website": "generalistai.com" },
