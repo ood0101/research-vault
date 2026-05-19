@@ -13,6 +13,7 @@
         { "file": "genbio-ai.md", "conviction": "MEDIUM", "oneliner": "Multi-scale digital organism (DNA→RNA→Protein→Cell→Tissue)", "website": "genbio.ai" },
         { "file": "origin-bio.md", "conviction": "MEDIUM", "oneliner": "AI safety layer for cell and gene therapies", "website": "origin.bio" },
         { "file": "biocog.md", "conviction": "MEDIUM", "oneliner": "AI diagnostic reasoning from whole genome sequencing ($490 DTC)", "website": "biocog.io" },
+        { "file": "immunera.md", "conviction": "MEDIUM-HIGH", "oneliner": "ML blood test reading BCR+TCR repertoires to diagnose autoimmune disease — Stanford spinout, Science paper, Topol endorsed, $8M seed", "website": "immunera.ai" },
         { "file": "ligand-ai.md", "conviction": "LOW-MEDIUM", "oneliner": "Computational peptide nanoparticles for gene therapy delivery", "website": "ligandai.com" },
         { "file": "matrix-bio.md", "conviction": "LOW", "oneliner": "Smartphone-based 100+ biomarker testing ($5/test)", "website": "trymatrix.bio" },
         { "file": "coefficient-bio.md", "conviction": "HIGH", "oneliner": "Lab-in-the-loop autonomous drug design (acquired by Anthropic ~$400M)", "website": "coefficientbio.com" }
@@ -29,7 +30,8 @@
         { "file": "sf-compute.md", "conviction": "MEDIUM-HIGH", "oneliner": "GPU commodities marketplace with tradable contracts", "website": "sfcompute.com" },
         { "file": "etched.md", "conviction": "MEDIUM", "oneliner": "Transformer-specific ASIC for inference", "website": "etched.com" },
         { "file": "cumulus-labs.md", "conviction": "MEDIUM", "oneliner": "Hardware-specific inference engine for NVIDIA Grace Hopper", "website": "cumuluslabs.io" },
-        { "file": "amp-pbc-raw.md", "conviction": "PENDING", "oneliner": "Independent AI compute grid pooling frontier teams (Anjney Midha / ex-a16z)", "website": "amppublic.com" }
+        { "file": "amp-pbc-raw.md", "conviction": "PENDING", "oneliner": "Independent AI compute grid pooling frontier teams (Anjney Midha / ex-a16z)", "website": "amppublic.com" },
+        { "file": "oxide-computer.md", "conviction": "HIGH", "oneliner": "The first cloud computer you can own — rack-scale vertical integration, Cantrill/Tuck ex-Sun/Joyent, $389M, USIT-led", "website": "oxide.computer" }
       ]
     },
     {
