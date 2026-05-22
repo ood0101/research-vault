@@ -31,7 +31,8 @@
         { "file": "etched.md", "conviction": "MEDIUM", "oneliner": "Transformer-specific ASIC for inference", "website": "etched.com" },
         { "file": "cumulus-labs.md", "conviction": "MEDIUM", "oneliner": "Hardware-specific inference engine for NVIDIA Grace Hopper", "website": "cumuluslabs.io" },
         { "file": "amp-pbc-raw.md", "conviction": "PENDING", "oneliner": "Independent AI compute grid pooling frontier teams (Anjney Midha / ex-a16z)", "website": "amppublic.com" },
-        { "file": "oxide-computer.md", "conviction": "HIGH", "oneliner": "The first cloud computer you can own — rack-scale vertical integration, Cantrill/Tuck ex-Sun/Joyent, $389M, USIT-led", "website": "oxide.computer" }
+        { "file": "oxide-computer.md", "conviction": "HIGH", "oneliner": "The first cloud computer you can own — rack-scale vertical integration, Cantrill/Tuck ex-Sun/Joyent, $389M, USIT-led", "website": "oxide.computer" },
+        { "file": "prismml.md", "conviction": "MEDIUM-HIGH", "oneliner": "True 1-bit LLMs (Bonsai 8B in 1.15GB) — Caltech IP, Khosla + ex-Google-TPU founder backed, $16.25M seed", "website": "prismml.com" }
       ]
     },
     {
