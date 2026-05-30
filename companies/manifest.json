@@ -52,7 +52,8 @@
         { "file": "sunday-ai.md", "conviction": "HIGH", "oneliner": "Household robot Memo — 10M real-home episodes, ALOHA/Diffusion Policy inventors, $1.15B", "website": "sunday.ai" },
         { "file": "elorian-ai.md", "conviction": "MEDIUM-HIGH", "oneliner": "Native multimodal visual reasoning — Gemini/MM1/BLIP-3 builders, Jeff Dean-backed, $55M", "website": "elorian.ai" },
         { "file": "evolutionaryscale.md", "conviction": "ACQUIRED", "oneliner": "Protein foundation model ESM3 (98B params, 500M years of evolution simulated) — team acquired by CZ Biohub Nov 2025, $142M seed", "website": "evolutionaryscale.ai" },
-        { "file": "core-automation.md", "conviction": "HIGH", "oneliner": "The world's most automated AI lab — Jerry Tworek (ex-OpenAI VP of Research, drove o1/o3/Codex) + Gemini researchers, targeting $1B at $4B valuation", "website": "coreauto.com" }
+        { "file": "core-automation.md", "conviction": "HIGH", "oneliner": "The world's most automated AI lab — Jerry Tworek (ex-OpenAI VP of Research, drove o1/o3/Codex) + Gemini researchers, targeting $1B at $4B valuation", "website": "coreauto.com" },
+        { "file": "physicsx.md", "conviction": "HIGH", "oneliner": "AI-native engineering platform / Large Physics Models — ex-Mercedes F1 R&D + ex-QuantumBlack/McKinsey founders, ~$190M raised, near-unicorn, NVIDIA + Siemens-backed", "website": "physicsx.ai" }
       ]
     },
     {
